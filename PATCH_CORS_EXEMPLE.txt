@@ -1,0 +1,16 @@
+À intégrer AU DÉBUT de api/executive/bootstrap.php, avant tout require_once, toute sortie et toute connexion PDO :
+
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+if (in_array($origin, ['https://localhost', 'http://localhost'], true)) {
+    header('Access-Control-Allow-Origin: ' . $origin);
+    header('Vary: Origin');
+    header('Access-Control-Allow-Methods: GET, OPTIONS');
+    header('Access-Control-Allow-Headers: X-API-Key, Accept, Content-Type');
+    header('Access-Control-Max-Age: 600');
+}
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(204);
+    exit;
+}
+
+Ne pas ajouter Access-Control-Allow-Origin: * à une API financière. Restreindre à ces origines d'application seulement; une clé partagée reste une protection limitée : prévoir une authentification utilisateur/token à terme.

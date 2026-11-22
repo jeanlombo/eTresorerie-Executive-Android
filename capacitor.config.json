@@ -1,0 +1,9 @@
+{
+  "appId": "com.etresorerie.executive",
+  "appName": "eTrésorerie Executive",
+  "webDir": "dist",
+  "backgroundColor": "#0b1731",
+  "android": {
+    "backgroundColor": "#0b1731"
+  }
+}
